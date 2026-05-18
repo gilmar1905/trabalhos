@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página com Iframe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }body {
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  background: #1e293b;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.controls input {
+  width: 100%;
+  max-width: 600px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.controls button {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  background: #3b82f6;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.controls button:hover {
+  background: #2563eb;
+}
+
+.iframe-container {
+  flex: 1;
+  padding: 20px;
+}
+
+iframe {
+  width: 100%;
+  height: calc(100vh - 180px);
+  border: none;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.info {
+  text-align: center;
+  padding: 10px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+  </style>
+</head>
+<body>  <header>
+    <h1>Visualizador de Sites com Iframe</h1>
+    <p>Insira qualquer URL abaixo para abrir dentro da sua página HTML.</p>
+  </header>  <div class="controls">
+    <input
+      type="text"
+      id="siteUrl"
+      placeholder="https://exemplo.com"
+      value="https://example.com"
+    />
+    <button onclick="loadSite()">Carregar Site</button>
+  </div>  <div class="iframe-container">
+    <iframe id="siteFrame" src="https://example.com"></iframe>
+  </div>  <div class="info">
+    Alguns sites podem bloquear iframes por motivos de segurança (X-Frame-Options).
+  </div>  <script>
+    function loadSite() {
+      const urlInput = document.getElementById('siteUrl').value.trim();
+      const iframe = document.getElementById('siteFrame');
+
+      if (!urlInput) {
+        alert('Digite uma URL válida.');
+        return;
+      }
+
+      let finalUrl = urlInput;
+
+      if (!finalUrl.startsWith('http://') && !finalUrl.startsWith('https://')) {
+        finalUrl = 'https://' + finalUrl;
+      }
+
+      iframe.src = finalUrl;
+    }
+  </script></body>
+</html>
